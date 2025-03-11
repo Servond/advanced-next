@@ -4,6 +4,7 @@ interface IUser {
   email: string;
   firstname: string;
   lastname: string;
+  avatar?: string;
 }
 
 export interface IAuth {
@@ -16,6 +17,7 @@ const initialState: IAuth = {
     email: "",
     firstname: "",
     lastname: "",
+    avatar: "",
   },
   isLogin: false,
 };
