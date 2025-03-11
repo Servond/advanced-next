@@ -5,6 +5,9 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/lib/redux/hooks";
 
+import sign from "jwt-encode";
+import { setCookie } from "cookies-next";
+
 import { onLogin } from "@/lib/redux/features/authSlice";
 
 import LoginSchema from "./schema";
@@ -24,20 +27,22 @@ export default function LoginForm() {
       const { data } = await axios.get(
         `http://localhost:7001/user?email=${values.email}&password=${values.password}`
       );
-      console.log(data);
 
       if (data.length === 0) throw new Error("Email atau Password salah");
 
-      dispatch(
-        onLogin({
-          user: {
-            email: data[0].email,
-            firstname: data[0].firstname,
-            lastname: data[0].lastname,
-          },
-          isLogin: true,
-        })
-      );
+      const stateUser = {
+        user: {
+          email: data[0].email,
+          firstname: data[0].firstname,
+          lastname: data[0].lastname,
+        },
+        isLogin: true,
+      };
+
+      const token = sign(stateUser, "test");
+
+      setCookie("access_token", token);
+      dispatch(onLogin(stateUser));
 
       alert("Login Success");
       router.push("/");

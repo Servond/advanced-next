@@ -4,6 +4,7 @@ import "./globals.css";
 
 import StoreProvider from "@/components/storeProvider";
 import Navbar from "@/components/navbar";
+import Auth from "./auth";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,8 +32,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <StoreProvider>
-          <Navbar />
-          <div className="bg-gray-300">{children}</div>
+          <Auth>
+            <Navbar />
+            <div className="bg-gray-300">{children}</div>
+          </Auth>
         </StoreProvider>
       </body>
     </html>

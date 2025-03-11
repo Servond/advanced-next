@@ -6,7 +6,7 @@ interface IUser {
   lastname: string;
 }
 
-interface IAuth {
+export interface IAuth {
   user: IUser;
   isLogin: boolean;
 }

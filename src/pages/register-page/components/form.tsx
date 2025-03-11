@@ -18,6 +18,12 @@ export default function RegisterForm() {
 
   const register = async (values: IRegister) => {
     try {
+      const { data } = await axios.get(
+        `http://localhost:7001/user?email=${values.email}`
+      );
+
+      if (data.length > 0) throw new Error("Email sudah terdaftar");
+
       await axios.post("http://localhost:7001/user", values);
 
       alert("Register Success");
