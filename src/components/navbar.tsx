@@ -1,6 +1,6 @@
 "use client";
 
-// import Link from "next/link";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAppSelector, useAppDispatch } from "@/lib/redux/hooks";
 import { deleteCookie } from "cookies-next";
@@ -14,13 +14,15 @@ export default function Navbar() {
 
   return (
     <div className="h-[50px] flex justify-between p-4">
-      <div>
-        {auth.isLogin ? (
-          <div>Hello, {auth.user.firstname}</div>
-        ) : (
-          <div>Hello, User</div>
-        )}
-      </div>
+      <Link href={"/"}>
+        <div>
+          {auth.isLogin ? (
+            <div>Hello, {auth.user.firstname}</div>
+          ) : (
+            <div>Hello, User</div>
+          )}
+        </div>
+      </Link>
       <div>
         {auth.isLogin ? (
           <div>
