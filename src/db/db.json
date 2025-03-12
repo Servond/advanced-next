@@ -6,6 +6,13 @@
       "firstname": "Budi",
       "lastname": "Doremi",
       "password": "!Asd1234"
+    },
+    {
+      "id": "4c0f",
+      "firstname": "test-server",
+      "lastname": "test-server",
+      "email": "test@gmail.com",
+      "password": "!Asd1234"
     }
   ]
 }
