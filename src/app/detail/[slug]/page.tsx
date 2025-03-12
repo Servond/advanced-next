@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 interface IUser {
   id: string;
@@ -8,6 +9,7 @@ interface IUser {
   lastname: string;
   email: string;
   password: string;
+  avatar?: string;
 }
 
 export default function Detail({ params }: { params: { slug: string } }) {
@@ -33,6 +35,7 @@ export default function Detail({ params }: { params: { slug: string } }) {
     <div>
       {user ? (
         <div>
+          <Image src={user.avatar || ""} height={30} width={30} alt="avatar" />
           <div>{user.email}</div>
           <div>{user.firstname}</div>
           <div>{user.password}</div>
